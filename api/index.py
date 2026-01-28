@@ -1,16 +1,17 @@
 # api/index.py
+from flask import Flask, jsonify
 
-# Удалите этот импорт:
-# from vercel_runtime import Request, Response
+# Vercel ожидает найти переменную 'app'
+app = Flask(__name__)
 
-# Функция handler принимает стандартный объект запроса (request)
-def handler(request):
-    """
-    Простой обработчик Vercel Function.
-    """
-    # Этот текст вы увидите в браузере после успешного развертывания
-    response_text = "Привет от Vercel Python!"
-    
-    # Просто возвращаем строку. Vercel сам обернет её в Response object.
-    return response_text
+@app.route('/')
+def handle_all_requests():
+    """Отвечает на любой запрос к приложению."""
+    return jsonify({
+        "status": "success",
+        "message": "Hello, Vercel! Python backend is running.",
+        "timestamp": datetime.now().isoformat()
+    })
 
+# Импортируем datetime здесь, чтобы он был доступен функции home()
+from datetime import datetime 
