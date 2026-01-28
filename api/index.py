@@ -1,12 +1,16 @@
 # api/index.py
 
-from vercel_runtime import Request, Response
+# Удалите этот импорт:
+# from vercel_runtime import Request, Response
 
-def handler(request: Request) -> Response:
+# Функция handler принимает стандартный объект запроса (request)
+def handler(request):
     """
     Простой обработчик Vercel Function.
     """
     # Этот текст вы увидите в браузере после успешного развертывания
     response_text = "Привет от Vercel Python!"
     
-    return Response(response_text, headers={"Content-Type": "text/plain"})
+    # Просто возвращаем строку. Vercel сам обернет её в Response object.
+    return response_text
+
